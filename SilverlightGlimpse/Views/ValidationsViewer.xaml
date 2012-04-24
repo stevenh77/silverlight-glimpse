@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="SilverlightGlimpse.Views.ValidationsViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Width="75"
+                       Margin="5,0,0,0"
+                       Text="Action" />
+            <TextBlock Width="110" Text="Control Name" />
+            <TextBlock Width="130" Text="Type" />
+            <TextBlock Width="150" Text="Error" />
+        </StackPanel>
+
+        <ListBox x:Name="lbValidationErrors" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" ToolTipService.ToolTip="{Binding ToStringProperty}">
+                        <TextBlock Width="75" Text="{Binding Action}" />
+                        <TextBlock Width="110" Text="{Binding ControlName}" />
+                        <TextBlock Width="130" Text="{Binding ControlType}" />
+                        <TextBlock Text="{Binding ErrorContent}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

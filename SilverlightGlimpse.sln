@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightGlimpse", "SilverlightGlimpse\SilverlightGlimpse.csproj", "{BB51026B-2864-4389-AACA-0BBDF1926E46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightValidation", "SilverlightValidation\SilverlightValidation.csproj", "{0C1CC1FC-915A-4428-8952-CDC79EABC3F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB51026B-2864-4389-AACA-0BBDF1926E46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB51026B-2864-4389-AACA-0BBDF1926E46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB51026B-2864-4389-AACA-0BBDF1926E46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB51026B-2864-4389-AACA-0BBDF1926E46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C1CC1FC-915A-4428-8952-CDC79EABC3F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C1CC1FC-915A-4428-8952-CDC79EABC3F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C1CC1FC-915A-4428-8952-CDC79EABC3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C1CC1FC-915A-4428-8952-CDC79EABC3F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

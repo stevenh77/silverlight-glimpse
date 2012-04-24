@@ -1,0 +1,3 @@
+﻿Colours for the numbers
+Numbers on tab headers
+Margin on the open position
