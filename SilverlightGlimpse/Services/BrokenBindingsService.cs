@@ -50,7 +50,9 @@ namespace SilverlightGlimpse.Services
                     continue;
                 }
 
-                var value = PropertyPathHelper.GetValue(fe, "Text");
+                // Ignore false positives where a control has a value for the binding
+                var property = fi.Name.Replace("Property", "");
+                var value = PropertyPathHelper.GetValue(fe, property);
                 if ((value!=null) && value.ToString() != string.Empty)
                     continue;
 

@@ -2,12 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:c="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
-             xmlns:local="clr-namespace:SilverlightGlimpse.Converters"
-             xmlns:views="clr-namespace:SilverlightGlimpse.Views">
+             xmlns:converters="clr-namespace:SilverlightGlimpse.Converters"
+             xmlns:views="clr-namespace:SilverlightGlimpse.Views"
+             xmlns:xaml="clr-namespace:SilverlightGlimpse.Xaml">
     <UserControl.Resources>
         <SolidColorBrush x:Name="noExceptionsFill" Color="SteelBlue" />
         <SolidColorBrush x:Name="noExceptionsBorder" Color="LightBlue" />
-        <SolidColorBrush x:Name="hasExceptionsFill" Color="Red" />
+        <SolidColorBrush x:Name="hasExceptionsFill" Color="#E51400" />
         <SolidColorBrush x:Name="hasExceptionsBorder" Color="Salmon" />
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
@@ -16,8 +17,8 @@
                 <Style TargetType="Ellipse">
                     <Setter Property="Width" Value="40" />
                     <Setter Property="Height" Value="40" />
-                    <Setter Property="Fill" Value="{StaticResource noExceptionsFill}" />
-                    <Setter Property="Stroke" Value="{StaticResource noExceptionsBorder}" />
+                    <Setter Property="Fill" Value="{xaml:MultiBinding Converter={converters:NumberToBrushConverter}, Source1={Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext}, Source2={StaticResource noExceptionsFill}, Source3={StaticResource hasExceptionsFill}}" />
+                    <Setter Property="Stroke" Value="{xaml:MultiBinding Converter={converters:NumberToBrushConverter}, Source1={Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext}, Source2={StaticResource noExceptionsBorder}, Source3={StaticResource hasExceptionsBorder}}" />
                     <Setter Property="StrokeThickness" Value="3" />
                     <Setter Property="Margin" Value="7" />
                 </Style>
@@ -27,22 +28,22 @@
                     <Setter Property="FontSize" Value="12" />
                     <Setter Property="FontWeight" Value="Bold" />
                     <Setter Property="Foreground" Value="White" />
-                    <Setter Property="Text" Value="0" />
+                    <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=DataContext}" />
                 </Style>
             </Grid.Resources>
 
             <StackPanel Orientation="Horizontal">
-                <Grid>
+                <Grid DataContext="{Binding BindingErrors.Count}">
                     <Ellipse x:Name="elpBindingErrors" ToolTipService.ToolTip="Binding Exception Count" />
-                    <TextBlock x:Name="tbBindingErrors" Text="{Binding BindingErrors.Count}" />
+                    <TextBlock x:Name="tbBindingErrors" />
                 </Grid>
-                <Grid>
+                <Grid DataContext="{Binding ValidationErrors.Count}">
                     <Ellipse x:Name="elpValidationErrors" ToolTipService.ToolTip="Validation Exception Count" />
-                    <TextBlock x:Name="tbValidationErrors" Text="{Binding ValidationErrors.Count}" />
+                    <TextBlock x:Name="tbValidationErrors" />
                 </Grid>
-                <Grid>
+                <Grid DataContext="{Binding Exceptions.Count}">
                     <Ellipse x:Name="elpUnhandledExceptions" ToolTipService.ToolTip="Unhandled Exception Count" />
-                    <TextBlock x:Name="tbUnhandledExceptions" Text="{Binding Exceptions.Count}" />
+                    <TextBlock x:Name="tbUnhandledExceptions" />
                 </Grid>
                 <Button x:Name="btnExpand"
                         Margin="7"
@@ -74,16 +75,16 @@
 
             <c:TabControl Width="600" Height="250">
 
-                <c:TabItem Header="Binding">
+                <c:TabItem Header="{Binding BindingErrors.Count, StringFormat='Bindings ({0})'}">
                     <views:BindingsViewer />
                 </c:TabItem>
-                <c:TabItem Header="Debug" Visibility="{Binding IsInDebugMode, Converter={local:BoolToVisibilityConverter FalseValue=Collapsed, TrueValue=Visible}}">
+                <c:TabItem Header="Debug">
                     <views:LogViewer />
                 </c:TabItem>
-                <c:TabItem Header="Validation">
+                <c:TabItem Header="{Binding ValidationErrors.Count, StringFormat='Validations ({0})'}">
                     <views:ValidationsViewer />
                 </c:TabItem>
-                <c:TabItem Header="Exception">
+                <c:TabItem Header="{Binding Exceptions.Count, StringFormat='Exceptions ({0})'}">
                     <views:ExceptionsViewer />
                 </c:TabItem>
             </c:TabControl>
